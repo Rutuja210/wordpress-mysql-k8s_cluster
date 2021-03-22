@@ -9,3 +9,6 @@
 
 ### Part I: Create the roles that will configure the master and slave node respectively
 [Refer this repo for complete configuration of kubernetes cluster on AWS](https://github.com/Rutuja210/k8s-multinode-cluster.git)
+
+### Part II: Create the role for launching wordpress and mysql database
+

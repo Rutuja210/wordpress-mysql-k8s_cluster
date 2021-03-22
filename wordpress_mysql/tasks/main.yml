@@ -1,0 +1,24 @@
+---
+# tasks file for wordpress_mysql
+- name: "Launching wordpress "
+  shell: "kubectl run {{wordpress_name}} --image=wordpress:5.1.1-php7.3-apache"
+  
+- name: "Launching mysql application"
+  shell: "kubectl run {{database_name}} --image=mysql:5.7 --env=MYSQL_ROOT_PASSWORD={{pass}}     --env=MYSQL_DATABASE={{database_name}}  --env=MYSQL_USER={{user_name}}  --env=MYSQL_PASSWORD={{pass}}"
+ 
+- name: "Exposing wordpess"
+  shell: "kubectl expose pods {{pod_name}}  --type=NodePort   --port=80"
+  register: exp
+  ignore_errors: yes
+
+- debug:
+    var: "exp.stdout_lines"
+- name: "get svc"
+  shell: "kubectl get svc"
+ 
+- name: "wait for a min"
+  pause:
+    seconds: 60
+
+- name: "This is database IP"
+  shell: "kubectl get pods -o wide"

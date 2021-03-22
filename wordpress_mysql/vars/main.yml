@@ -1,0 +1,5 @@
+---
+# vars file for wordpress_mysql
+database_ name: mydb 
+pass: "********"
+user_name: "rutuja"
